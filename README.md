@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# What is Redux
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Redux is a state management library, it is standalone library outdie react and can be used on other frontend frameworks such as Angular and Vue to make state management predictable and easily managed by using a few methods on how state can be updated
 
-## Available Scripts
+# What is React-Redux
 
-In the project directory, you can run:
+## Why Redux
 
-### `npm start`
+Enables updating of state management example, react state is one of the core concepts and state can be updated in the component in which it is initialized in.  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+When we want to implement an authentication and would want all the component to interact to be aware of any update on the component like an authentication, it enables the message to pass down to the child component.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+When the user logs out, it uodates the authentication on the parents compnents from that component to create a sort of global state where the state can be update and perisit to all other components
 
-### `npm test`
+## Three Principles of Redux
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 1st Principle
 
-### `npm run build`
+There is only one source of truth
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 2nd Principle
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+State is read-only. We cant directly mutate the state but we can change the state. React state is updated in a special way
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 3rd Principle
 
-### `npm run eject`
+Changes are made with pure function
+This means that the final state produced are made from simple non asynchronous functions 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Redux has to main parts
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 1. Actions in Redux
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Actions is a javascript object that has a type property that is a string and it describes how the action will update the states and actions are passed into redux with the dispatch action function.
 
-## Learn More
+The dispatch function helps pass the action through the reducers under the hood and therefore we say ACTIONS ARE DISPATCHED- EXAMPLE OF ACTIONS IN LOGGING LIKE LOGIN SUCCESS THAT CHANGES A PROPERTY OF THE REDUCE STATE is called authenticated from false to true that signifies that a user has logged in.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Actions can hold any other property as well for passing data, adn the property is called payload and the data can be passed in as an argument to an action creator.
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Actions is redux specific
+can be dispatched from React
+Describes what will happen to the state
+Have a require type property
+Can have any other optional properties
 
-### Analyzing the Bundle Size
+Taking a new state and returning a previous state is simply returning a new state, this is what is called asynchronous in complexity and has to be handled in the actions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+## ACTION CREATORS
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Can dispatch actions asynchronously
+A function which dispatches a normal action
+Allows for dynamic setting the payload property
+No changes required to the reducer.
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Action creators are functions that returns actions and they are not a separate building block of redux but instead just an alternate way to dispatch actions in their use.
 
-### Deployment
+If you want to save the user input to state you would set up a action creator with the arrow function.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 2. Reducers
 
-### `npm run build` fails to minify
+Reducers are setup as a switch case statement. In each case statement represents a single actions type each case statement must match an action type.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+There must be a straight one to one relationships between actions in reducer case statement.
+
+There can't be more actions that there are reducers case statement and vice versa when an action is dispatched.
+
+When an action is dispatched it run through a reducer to see if there is a matching statement. If there is a matching action type in the reducer the reducer modifies the global state accordingly. This is done under the hood.
+
+Reducers are not asynchronous they must simply r´take in the previous state and return a new state.
+
+All the asynchronous actions are handled by dispatching actions for example the action logging type of success will automatically run through all the reducers.
+
+
+## REUCER STATEUP
+
+Setup the reducer at the index.js file to import all react dependencies.
