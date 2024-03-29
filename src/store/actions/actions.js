@@ -31,3 +31,19 @@ export const failure = () => {
     type: ACTION_TYPES.FAILURE
   }
 }
+
+/**
+ * ? STEP 10
+ * create a new action creators names USER_INPUT and pass in a param test
+ * pass a second action called a payload
+ * 
+ * ? STEP 11
+ * Update the reducer to handle this piece of state property on the initialState
+ */
+
+export const user_input = (text) => {
+  return {
+    type: ACTION_TYPES.USER_INPUT,
+    payload: text
+  }
+}

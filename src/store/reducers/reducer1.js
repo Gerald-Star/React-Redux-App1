@@ -6,10 +6,20 @@ import * as ACTION_TYPES from '../actions/actions_types'
 
 /**
  * set the variable initialState / this is the proper redux state
+ * 
+ * ? STEP 11 
+ * set the new user_input property user_text on initialState
+ * ? STEP 12
+ * create a new case statement  on the reducer to handle the type text
+ * 
+ * ? STEP 13
+ * On the container, add additional button to handle the action type text
  */
+
 
 const initialState = {
   stateprop1: false,
+  user_text: ''
 }
 
 /**
@@ -36,6 +46,20 @@ const Reducer1 = (state = initialState, action) => {
         ...state,
         stateprop1: false
       }
+    
+    /**
+     * ! delete this reducer later and pass through a new file
+     */
+      /**
+       * case ACTION_TYPES.USER_INPUT:  // create action file of USER-INPUT
+        return {
+        ...state,
+        user_text: action.payload
+      }
+       * 
+       */
+
+    
     default: 
       return state
   }

@@ -33,6 +33,7 @@ class Container1 extends Component {
    * Setup the button with action_creators 1 & 2
    */
   render() {
+    const user_text = 'text 1'
     return (
       <div>
         <button onClick={() => console.log(this.props.stateprop1)}>Get State</button>
@@ -40,9 +41,10 @@ class Container1 extends Component {
         <button onClick={() => this.props.action2()}>Dispatch Action 2</button>
         <button onClick={() => this.props.action_creators1()}>Dispatch Action Creators 1</button>
         <button onClick={() => this.props.action_creators2()}>Dispatch Action Creators 2</button>
-
+        <button onClick={() => this.props.action_creators3(user_text)}>Dispatch Action Creators 3</button>
+        {this.props.stateprop1 ? <h1>{this.props.stateprop1} </h1> : null}
       </div>
-    );
+    ); // this condition renders the text on the screen when click action_creators 3
   }
 }
 
@@ -57,8 +59,8 @@ class Container1 extends Component {
 
 function mapStateToProps(state) {
   return {
-    stateprop1: state.stateprop1
-  }
+    stateprop1: state.user_text  // to access the state property text, set the state.user-text
+  }                              // ste up a condition on the button.
 }
 
 /**
@@ -78,7 +80,8 @@ function mapDispatchToProps(dispatch) {
     action1: () => dispatch(ACTIONS.SUCCESS),
     action2: () => dispatch(ACTIONS.FAILURE),
     action_creators1: () => dispatch(ACTIONS.success()),
-    action_creators2: () => dispatch(ACTIONS.failure())
+    action_creators2: () => dispatch(ACTIONS.failure()),
+    action_creators3: (text) => dispatch(ACTIONS.user_input(text))
 
 
   }
