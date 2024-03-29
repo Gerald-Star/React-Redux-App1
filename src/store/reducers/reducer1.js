@@ -9,7 +9,7 @@ import * as ACTION_TYPES from '../actions/actions_types'
  */
 
 const initialState = {
-  stateprop1: false
+  stateprop1: false,
 }
 
 /**
@@ -22,7 +22,7 @@ const initialState = {
  if the case ACTION_TYPES.FAILURE return false
 
  */
-const rootReducer = (state = initialState, action) => {
+const Reducer1 = (state = initialState, action) => {
   switch (action.type) {
     case ACTION_TYPES.SUCCESS:
       
@@ -41,4 +41,4 @@ const rootReducer = (state = initialState, action) => {
   }
 }
 
-export default rootReducer
+export default Reducer1;
